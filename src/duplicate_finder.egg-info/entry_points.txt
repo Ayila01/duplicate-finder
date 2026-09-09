@@ -1,0 +1,2 @@
+[console_scripts]
+duplicate-finder = duplicate_finder.main:main

@@ -1,0 +1,37 @@
+Metadata-Version: 2.4
+Name: duplicate-finder
+Version: 0.1.0
+Summary: A cross-platform tool to find duplicate files
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# Duplicate Finder
+
+A cross-platform Python tool for finding duplicate files.
+
+## Features
+
+- Scan directories recursively
+- Identify potential duplicate files
+- Compare files using cryptographic hashes
+- Display duplicate groups
+- Safely remove selected duplicates
+
+## Supported platforms
+
+- Windows
+- macOS
+- Linux
+
+## Requirements
+
+- Python 3.10+
+
+## Installation
+
+Clone the repository and install the project:
+
+```bash
+pip install -e .

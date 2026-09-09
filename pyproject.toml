@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "duplicate-finder"
+version = "0.1.0"
+description = "A cross-platform tool to find duplicate files"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+
+[project.scripts]
+duplicate-finder = "duplicate_finder.main:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

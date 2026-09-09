@@ -1,0 +1,13 @@
+LICENSE
+README.md
+pyproject.toml
+src/duplicate_finder/__init__.py
+src/duplicate_finder/finder.py
+src/duplicate_finder/hasher.py
+src/duplicate_finder/main.py
+src/duplicate_finder/scanner.py
+src/duplicate_finder.egg-info/PKG-INFO
+src/duplicate_finder.egg-info/SOURCES.txt
+src/duplicate_finder.egg-info/dependency_links.txt
+src/duplicate_finder.egg-info/entry_points.txt
+src/duplicate_finder.egg-info/top_level.txt
