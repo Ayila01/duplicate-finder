@@ -11,3 +11,6 @@ src/duplicate_finder.egg-info/SOURCES.txt
 src/duplicate_finder.egg-info/dependency_links.txt
 src/duplicate_finder.egg-info/entry_points.txt
 src/duplicate_finder.egg-info/top_level.txt
+tests/test_finder.py
+tests/test_hasher.py
+tests/test_scanner.py
