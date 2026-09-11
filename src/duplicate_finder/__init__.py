@@ -1,1 +1,0 @@
-"""Duplicate Finder package."""

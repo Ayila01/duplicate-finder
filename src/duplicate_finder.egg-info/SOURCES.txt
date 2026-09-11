@@ -1,7 +1,6 @@
 LICENSE
 README.md
 pyproject.toml
-src/duplicate_finder/__init__.py
 src/duplicate_finder/finder.py
 src/duplicate_finder/hasher.py
 src/duplicate_finder/main.py
