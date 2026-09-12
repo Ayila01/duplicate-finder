@@ -1,6 +1,7 @@
 import argparse
 from pathlib import Path
 
+from .remover import remove_duplicates
 from .finder import find_duplicates
 
 
@@ -40,17 +41,77 @@ def display_group(group: list[Path], index: int, total: int) -> None:
         print(f"  [{file_index}] {file}")
 
 
+def manage_group(group: list[Path]) -> str:
+    """Allow the user to choose which duplicate file to keep."""
+
+    print("\nWhich file do you want to KEEP?")
+    print("[1-{}] Select file   [S] Skip   [Q] Quit".format(len(group)))
+
+    choice = input("\nChoice: ").strip().lower()
+
+    if choice == "s":
+        print("\nSkipped.")
+        return "skip"
+
+    if choice == "q":
+        return "quit"
+
+    if not choice.isdigit():
+        print("\nInvalid choice.")
+        return "stay"
+
+    selected_index = int(choice) - 1
+
+    if selected_index < 0 or selected_index >= len(group):
+        print("\nInvalid file number.")
+        return "stay"
+
+    keep = group[selected_index]
+
+    files_to_remove = [
+        file
+        for file in group
+        if file != keep
+    ]
+
+    print("\nYou selected:")
+    print(f"  {keep}")
+
+    print("\nThe following files will be moved to the Trash:")
+
+    for file in files_to_remove:
+        print(f"  • {file}")
+
+    confirmation = input("\nConfirm? [y/N]: ").strip().lower()
+
+    if confirmation != "y":
+        print("\nNo files were removed.")
+        return "stay"
+
+    try:
+        removed = remove_duplicates(group, keep)
+
+        print(f"\n✓ {len(removed)} file(s) moved to the Trash.")
+        return "done"
+
+    except (FileNotFoundError, ValueError, OSError) as error:
+        print(f"\nError: {error}")
+        return "stay"
+        
+
 def browse_duplicates(duplicates: list[list[Path]]) -> None:
-    """Allow the user to browse duplicate groups."""
+    """Allow the user to browse and manage duplicate groups."""
 
     current = 0
     total = len(duplicates)
 
     while True:
-        display_group(duplicates[current], current + 1, total)
+        group = duplicates[current]
+
+        display_group(group, current + 1, total)
 
         print("\n" + "-" * 60)
-        print("[N] Next   [P] Previous   [Q] Quit")
+        print("[N] Next   [P] Previous   [A] Manage   [Q] Quit")
 
         choice = input("\nChoice: ").strip().lower()
 
@@ -66,12 +127,26 @@ def browse_duplicates(duplicates: list[list[Path]]) -> None:
             else:
                 print("\nYou are already at the first group.")
 
+        elif choice == "a":
+            result = manage_group(group)
+
+            if result == "quit":
+                print("\nExiting...")
+                break
+
+            if result in ("done", "skip"):
+                if current < total - 1:
+                    current += 1
+                else:
+                    print("\n✓ All duplicate groups have been processed.")
+                    break
+
         elif choice == "q":
             print("\nExiting...")
             break
 
         else:
-            print("\nInvalid choice. Please choose N, P or Q.")
+            print("\nInvalid choice. Please choose N, P, A or Q.")
 
 
 def scan_command(directory: Path) -> None:
