@@ -9,7 +9,7 @@ A cross-platform Python tool for finding duplicate files.
 - Compare files using cryptographic hashes
 - Display duplicate groups
 - Safely remove selected duplicates
-
+  
 ## Supported platforms
 
 - Windows
