@@ -15,7 +15,7 @@ A cross-platform Python tool for finding duplicate files.
 - Windows
 - macOS
 - Linux
-
+ 
 ## Requirements
 
 - Python 3.10+
