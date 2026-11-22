@@ -3,7 +3,7 @@
 A cross-platform Python tool for finding duplicate files.
 
 ## Features
-
+ 
 - Scan directories recursively
 - Identify potential duplicate files
 - Compare files using cryptographic hashes
