@@ -11,7 +11,7 @@ A cross-platform Python tool for finding duplicate files.
 - Safely remove selected duplicates
   
 ## Supported platforms
-
+ 
 - Windows
 - macOS
 - Linux
